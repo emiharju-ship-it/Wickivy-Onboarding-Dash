@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html lang="en" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wickivy Newbie & Onboarding Hub</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome & Canvas Confetti -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        wickivy: {
+                            sage: '#8AA891',
+                            'sage-light': '#EBF2ED',
+                            'sage-dark': '#384E3F',
+                            blossom: '#E8A5B8',
+                            'blossom-light': '#FAF0F3',
+                            'blossom-dark': '#A34862',
+                            cream: '#FDFBF7',
+                            'cream-dark': '#1C241E',
+                            slate: '#1E2923',
+                            accent: '#D4AF37'
+                        }
+                    },
+                    fontFamily: {
+                        header: ['Cinzel', 'serif'],
+                        body: ['Plus Jakarta Sans', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+        .font-header {
+            font-family: 'Cinzel', serif;
+        }
+        .glass-panel {
+            background: rgba(253, 251, 247, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 168, 145, 0.25);
+        }
+        .dark .glass-panel {
+            background: rgba(28, 36, 30, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(138, 168, 145, 0.15);
+        }
+        .progress-glow {
+            box-shadow: 0 0 15px rgba(232, 165, 184, 0.5);
+        }
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8AA891;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+<body class="bg-wickivy-cream text-wickivy-slate dark:bg-wickivy-cream-dark dark:text-gray-100 min-h-full flex flex-col selection:bg-wickivy-blossom selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="sticky top-0 z-40 w-full glass-panel border-b border-wickivy-sage/20 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-gradient-to-tr from-wickivy-sage to-wickivy-blossom flex items-center justify-center text-white shadow-md text-xl">
+                    🌸
+                </div>
+                <div>
+                    <h1 class="font-header font-bold text-xl sm:text-2xl text-wickivy-sage-dark dark:text-wickivy-blossom tracking-wide">WICKIVY</h1>
+                    <p class="text-xs text-wickivy-sage dark:text-gray-400 font-medium tracking-wider uppercase">Newbie & Onboarding Hub</p>
+                </div>
+            </div>
+
+            <!-- Actions & Theme Toggle -->
+            <div class="flex items-center gap-3">
+                <button id="reset-btn" onclick="resetProgress()" class="hidden sm:flex items-center gap-2 text-xs font-semibold px-3 py-2 rounded-xl border border-wickivy-sage/30 hover:bg-wickivy-sage-light dark:hover:bg-wickivy-sage-dark/30 transition-all text-gray-600 dark:text-gray-300">
+                    <i class="fa-solid font-bold fa-rotate-right"></i> Reset Progress
+                </button>
+                <button id="theme-toggle" onclick="toggleTheme()" class="p-2.5 rounded-xl border border-wickivy-sage/30 hover:bg-wickivy-sage-light dark:hover:bg-wickivy-sage-dark/30 transition-all text-wickivy-sage-dark dark:text-wickivy-blossom">
+                    <i id="theme-icon" class="fa-solid fa-moon text-lg"></i>
+                </button>
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Staff-Dashboard/" target="_blank" class="hidden md:inline-flex items-center gap-2 text-xs font-semibold px-4 py-2.5 rounded-xl bg-wickivy-sage text-white hover:bg-wickivy-sage-dark transition-all shadow-sm">
+                    Staff Portal <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+        <!-- Welcome Banner & Main Progress -->
+        <section class="relative overflow-hidden rounded-3xl glass-panel p-6 sm:p-10 border border-wickivy-sage/30 shadow-lg">
+            <div class="absolute -top-16 -right-16 w-64 h-64 bg-wickivy-blossom/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -bottom-16 -left-16 w-64 h-64 bg-wickivy-sage/20 rounded-full blur-3xl pointer-events-none"></div>
+
+            <div class="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <div class="lg:col-span-7 space-y-4">
+                    <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-wickivy-blossom-light dark:bg-wickivy-blossom-dark/30 text-wickivy-blossom-dark dark:text-wickivy-blossom text-xs font-bold uppercase tracking-wider border border-wickivy-blossom/30">
+                        ✨ Welcome Adventurer
+                    </div>
+                    <h2 class="font-header text-3xl sm:text-4xl lg:text-5xl font-extrabold text-wickivy-sage-dark dark:text-wickivy-cream leading-tight">
+                        Welcome to the <span class="text-wickivy-blossom">Wickivy Realm!</span>
+                    </h2>
+                    <p class="text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
+                        We are thrilled to have you here. Complete your onboarding quests below to unlock realm perks, find your mentor, discover your archetype, and settle into your new cozy home!
+                    </p>
+                </div>
+
+                <!-- Overall Progress Card -->
+                <div class="lg:col-span-5 bg-white/60 dark:bg-wickivy-slate/80 p-6 rounded-2xl border border-wickivy-sage/30 shadow-sm space-y-4">
+                    <div class="flex justify-between items-center">
+                        <span class="font-header font-bold text-sm text-wickivy-sage-dark dark:text-wickivy-blossom">Onboarding Journey</span>
+                        <span id="progress-percent" class="font-bold text-lg text-wickivy-blossom">0%</span>
+                    </div>
+
+                    <div class="w-full bg-gray-200 dark:bg-gray-700 h-4 rounded-full overflow-hidden p-0.5">
+                        <div id="progress-bar" class="bg-gradient-to-r from-wickivy-sage via-wickivy-blossom to-wickivy-accent h-full rounded-full transition-all duration-500 w-0 progress-glow"></div>
+                    </div>
+
+                    <div class="flex justify-between text-xs text-gray-500 dark:text-gray-400 font-medium">
+                        <span id="tasks-status">0 of 7 Quests Complete</span>
+                        <span id="journey-rank"> 🌱 New Seedling</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Main Dashboard Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- Left 2 Columns: Starter Checklist & Archetype Quiz -->
+            <div class="lg:col-span-2 space-y-8">
+
+                <!-- Step-by-Step Starter Checklist -->
+                <section class="glass-panel p-6 sm:p-8 rounded-3xl shadow-sm border border-wickivy-sage/30">
+                    <div class="flex items-center justify-between mb-6">
+                        <div>
+                            <h3 class="font-header font-bold text-2xl text-wickivy-sage-dark dark:text-wickivy-cream">🌿 Onboarding Quests</h3>
+                            <p class="text-xs sm:text-sm text-gray-500 dark:text-gray-400">Click tasks as you complete them to rank up!</p>
+                        </div>
+                        <span class="text-2xl">📋</span>
+                    </div>
+
+                    <div class="space-y-6">
+                        <!-- Module 1 -->
+                        <div class="space-y-3">
+                            <h4 class="font-header font-semibold text-xs tracking-wider uppercase text-wickivy-sage dark:text-wickivy-blossom flex items-center gap-2">
+                                <span>🌿 STEP 1:</span> Realm Basics & Rules
+                            </h4>
+                            <div class="space-y-2">
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="rulebook" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Read Realm Rules & Guidelines</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Understand community standards & realm policies</p>
+                                        </div>
+                                    </div>
+                                    <button onclick="openModal('rules-modal'); event.stopPropagation();" class="text-xs px-3 py-1.5 rounded-lg bg-wickivy-sage/10 text-wickivy-sage-dark dark:text-wickivy-blossom hover:bg-wickivy-sage hover:text-white transition-all font-medium">Read</button>
+                                </label>
+
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="roles" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Choose Reaction Roles</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Pick notification and cosmetic realm roles</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-wickivy-sage font-semibold">Discord</span>
+                                </label>
+
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="profile" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Set Realm Profile & Nickname</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Set your server nickname matching your character or standard name</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-wickivy-sage font-semibold">Profile</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Module 2 -->
+                        <div class="space-y-3">
+                            <h4 class="font-header font-semibold text-xs tracking-wider uppercase text-wickivy-sage dark:text-wickivy-blossom flex items-center gap-2">
+                                <span>🌸 STEP 2:</span> Community Connection
+                            </h4>
+                            <div class="space-y-2">
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="intro" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Post an Introduction</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Say hi in #introductions and share your favorite cozy hobbies</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-wickivy-blossom font-semibold">Social</span>
+                                </label>
+
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="chat" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Join General Chat Conversation</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Send a warm wave in main chat</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-wickivy-blossom font-semibold">Chat</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <!-- Module 3 -->
+                        <div class="space-y-3">
+                            <h4 class="font-header font-semibold text-xs tracking-wider uppercase text-wickivy-sage dark:text-wickivy-blossom flex items-center gap-2">
+                                <span>🏰 STEP 3:</span> Realm & Guild Prep
+                            </h4>
+                            <div class="space-y-2">
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="quiz" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Take Archetype Quiz</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Discover your Wickivy playstyle & guild alignment</p>
+                                        </div>
+                                    </div>
+                                    <a href="#archetype-quiz" class="text-xs px-3 py-1.5 rounded-lg bg-wickivy-blossom/20 text-wickivy-blossom-dark dark:text-wickivy-blossom hover:bg-wickivy-blossom hover:text-white transition-all font-medium">Quiz Below ↓</a>
+                                </label>
+
+                                <label class="task-item flex items-center justify-between p-4 rounded-2xl bg-white/70 dark:bg-wickivy-slate/50 border border-wickivy-sage/20 hover:border-wickivy-sage transition-all cursor-pointer group">
+                                    <div class="flex items-center gap-3">
+                                        <input type="checkbox" data-id="guild" onchange="toggleTask(this)" class="w-5 h-5 rounded-md border-wickivy-sage text-wickivy-sage focus:ring-wickivy-blossom accent-wickivy-sage cursor-pointer">
+                                        <div>
+                                            <p class="font-semibold text-sm group-hover:text-wickivy-sage dark:group-hover:text-wickivy-blossom transition-colors">Explore Guild & Realm Dashboards</p>
+                                            <p class="text-xs text-gray-500 dark:text-gray-400">Check out Guild updates & Realm information</p>
+                                        </div>
+                                    </div>
+                                    <span class="text-xs text-wickivy-sage font-semibold">Explore</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Interactive Archetype Mini-Quiz -->
+                <section id="archetype-quiz" class="glass-panel p-6 sm:p-8 rounded-3xl shadow-sm border border-wickivy-sage/30 relative overflow-hidden">
+                    <div class="flex items-center justify-between mb-4">
+                        <div>
+                            <span class="text-xs font-bold uppercase tracking-widest text-wickivy-blossom">Interactive Mini-Quiz</span>
+                            <h3 class="font-header font-bold text-2xl text-wickivy-sage-dark dark:text-wickivy-cream">🔮 Discover Your Wickivy Archetype</h3>
+                        </div>
+                        <span class="text-3xl">✨</span>
+                    </div>
+
+                    <!-- Quiz Content Container -->
+                    <div id="quiz-container" class="space-y-6">
+                        <!-- Q1 -->
+                        <div id="quiz-q1" class="space-y-3">
+                            <p class="font-semibold text-sm text-gray-700 dark:text-gray-200">1. How do you prefer to spend your time in the realm?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <button onclick="selectAnswer(1, 'flora')" class="q1-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🌿 Tending gardens & gathering herbs</button>
+                                <button onclick="selectAnswer(1, 'scholar')" class="q1-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">📜 Studying lore & helping newcomers</button>
+                                <button onclick="selectAnswer(1, 'scout')" class="q1-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">⚔️ Exploring mysterious ruins & quests</button>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div id="quiz-q2" class="space-y-3 hidden">
+                            <p class="font-semibold text-sm text-gray-700 dark:text-gray-200">2. Which companion element calls to you?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <button onclick="selectAnswer(2, 'flora')" class="q2-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🌸 Blossom Petals & Whispering Ivy</button>
+                                <button onclick="selectAnswer(2, 'scholar')" class="q2-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🕯️ Moonlight & Ancient Tomes</button>
+                                <button onclick="selectAnswer(2, 'scout')" class="q2-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🦌 Forest Stags & Mountain Mist</button>
+                            </div>
+                        </div>
+
+                        <!-- Q3 -->
+                        <div id="quiz-q3" class="space-y-3 hidden">
+                            <p class="font-semibold text-sm text-gray-700 dark:text-gray-200">3. What is your goal in the Wickivy community?</p>
+                            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                                <button onclick="selectAnswer(3, 'flora')" class="q3-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🏠 Building a cozy aesthetic space</button>
+                                <button onclick="selectAnswer(3, 'scholar')" class="q3-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🤝 Organising realm events & guides</button>
+                                <button onclick="selectAnswer(3, 'scout')" class="q3-btn p-3 rounded-xl border border-wickivy-sage/30 text-left text-xs hover:border-wickivy-sage hover:bg-wickivy-sage/10 transition-all">🏆 Climbing guild leaderboards & achievements</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Quiz Result Display -->
+                    <div id="quiz-result" class="hidden p-6 rounded-2xl bg-gradient-to-br from-wickivy-sage-light to-wickivy-blossom-light dark:from-wickivy-sage-dark/40 dark:to-wickivy-blossom-dark/40 border border-wickivy-sage/40 text-center space-y-3">
+                        <span id="result-icon" class="text-4xl">🌸</span>
+                        <h4 id="result-title" class="font-header font-bold text-xl text-wickivy-sage-dark dark:text-wickivy-blossom">Flora Weaver</h4>
+                        <p id="result-desc" class="text-xs text-gray-600 dark:text-gray-300 max-w-md mx-auto">You thrive on creativity, harmony, and creating cozy environments. You fit perfectly with the Botanical Guild!</p>
+                        <button onclick="resetQuiz()" class="text-xs px-4 py-2 rounded-xl bg-wickivy-sage text-white font-medium hover:bg-wickivy-sage-dark transition-all">Retake Quiz</button>
+                    </div>
+                </section>
+            </div>
+
+            <!-- Right Column: Mentor Card & Unlocked Rewards -->
+            <div class="space-y-8">
+
+                <!-- Mentor Assignment Card -->
+                <section class="glass-panel p-6 rounded-3xl shadow-sm border border-wickivy-sage/30 space-y-5">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-header font-bold text-lg text-wickivy-sage-dark dark:text-wickivy-cream">🤝 Assigned Mentor</h3>
+                        <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 text-xs font-semibold">
+                            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span> Online
+                        </span>
+                    </div>
+
+                    <div class="flex items-center gap-4 bg-white/60 dark:bg-wickivy-slate/60 p-4 rounded-2xl border border-wickivy-sage/20">
+                        <div class="relative">
+                            <div class="w-14 h-14 rounded-2xl bg-gradient-to-tr from-wickivy-blossom to-wickivy-sage flex items-center justify-center text-2xl text-white font-header font-bold shadow-md">
+                                AW
+                            </div>
+                            <span class="absolute -bottom-1 -right-1 w-4 h-4 bg-emerald-500 border-2 border-white dark:border-wickivy-slate rounded-full"></span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-base text-wickivy-sage-dark dark:text-wickivy-cream">Angela Wick</h4>
+                            <p class="text-xs text-wickivy-sage font-medium">Realm Owner & Mentor</p>
+                            <p class="text-[11px] text-gray-400">UTC-5 (EST) • Speaks EN</p>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+                        "Welcome to Wickivy! As owner and mentor, I'm here to ensure your journey in our realm is cozy and magical."
+                    </p>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="openModal('mentor-modal')" class="w-full py-2.5 rounded-xl bg-wickivy-sage text-white text-xs font-semibold hover:bg-wickivy-sage-dark transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i> Message
+                        </button>
+                        <button onclick="openModal('reassign-modal')" class="w-full py-2.5 rounded-xl bg-white/60 dark:bg-wickivy-slate/40 text-wickivy-sage-dark dark:text-wickivy-cream text-xs font-semibold border border-wickivy-sage/30 hover:bg-wickivy-sage-light dark:hover:bg-wickivy-sage-dark/30 transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-arrows-rotate"></i> Change
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Starter Rewards Tracker -->
+                <section class="glass-panel p-6 rounded-3xl shadow-sm border border-wickivy-sage/30 space-y-4">
+                    <div class="flex items-center justify-between">
+                        <h3 class="font-header font-bold text-lg text-wickivy-sage-dark dark:text-wickivy-cream">🎁 Starter Rewards</h3>
+                        <span class="text-xs font-semibold text-wickivy-blossom" id="rewards-count">0/3 Unlocked</span>
+                    </div>
+
+                    <div class="space-y-3">
+                        <div id="reward-25" class="p-4 rounded-2xl bg-white/50 dark:bg-wickivy-slate/40 border border-wickivy-sage/20 flex items-center justify-between opacity-60 transition-all">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-wickivy-sage/20 flex items-center justify-center text-xl">🌱</div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-wickivy-sage-dark dark:text-wickivy-cream">Seedling Role & Badge</h4>
+                                    <p class="text-[11px] text-gray-400">Unlock at 25% progress</p>
+                                </div>
+                            </div>
+                            <span class="reward-status text-xs font-bold text-gray-400">Locked</span>
+                        </div>
+
+                        <div id="reward-50" class="p-4 rounded-2xl bg-white/50 dark:bg-wickivy-slate/40 border border-wickivy-sage/20 flex items-center justify-between opacity-60 transition-all">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-wickivy-blossom/20 flex items-center justify-center text-xl">🎒</div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-wickivy-sage-dark dark:text-wickivy-cream">Starter Kit Pack</h4>
+                                    <p class="text-[11px] text-gray-400">Unlock at 50% progress</p>
+                                </div>
+                            </div>
+                            <span class="reward-status text-xs font-bold text-gray-400">Locked</span>
+                        </div>
+
+                        <div id="reward-100" class="p-4 rounded-2xl bg-white/50 dark:bg-wickivy-slate/40 border border-wickivy-sage/20 flex items-center justify-between opacity-60 transition-all">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 flex items-center justify-center text-xl">👑</div>
+                                <div>
+                                    <h4 class="font-bold text-xs text-wickivy-sage-dark dark:text-wickivy-cream">"Realm Bloom" Title</h4>
+                                    <p class="text-[11px] text-gray-400">Unlock at 100% progress</p>
+                                </div>
+                            </div>
+                            <span class="reward-status text-xs font-bold text-gray-400">Locked</span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+
+        <!-- Ecosystem Dashboard Navigation Links -->
+        <section class="space-y-4 pt-4">
+            <h3 class="font-header font-bold text-xl text-wickivy-sage-dark dark:text-wickivy-cream">🌿 Wickivy Dashboard Suite</h3>
+            
+            <div class="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-8 gap-3">
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Staff-Dashboard/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">🌸</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Staff Team</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/Staff-applications-/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">📋</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Applications</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Training-Dash/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">✨</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Training</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Birthday-Dash/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">🎂</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Birthdays</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/wickivy-bp-dashboard/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">🌿</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">BP Hub</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Realm-DashB/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">🦌</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Realm Main</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Realm-Updates-Dash/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">💌</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Updates</span>
+                </a>
+                <a href="https://emiharju-ship-it.github.io/Wickivy-Guild-dash/" target="_blank" class="p-3.5 rounded-2xl glass-panel text-center hover:border-wickivy-sage hover:shadow-md transition-all group">
+                    <span class="text-2xl block mb-1">🏰</span>
+                    <span class="text-xs font-semibold block text-wickivy-sage-dark dark:text-gray-200 group-hover:text-wickivy-blossom">Guilds</span>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full border-t border-wickivy-sage/20 py-6 mt-12 glass-panel text-center text-xs text-gray-500 dark:text-gray-400">
+        <p>🌱 Wickivy Realm Community Onboarding Hub &bull; Crafted with cozy botanical vibes</p>
+    </footer>
+
+    <!-- MODAL 1: Rules Modal -->
+    <div id="rules-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel bg-wickivy-cream dark:bg-wickivy-cream-dark max-w-lg w-full rounded-3xl p-6 border border-wickivy-sage/40 space-y-4 max-h-[85vh] overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-wickivy-sage/20 pb-3">
+                <h3 class="font-header font-bold text-xl text-wickivy-sage-dark dark:text-wickivy-blossom">📜 Wickivy Realm Guidelines</h3>
+                <button onclick="closeModal('rules-modal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="space-y-3 text-xs text-gray-600 dark:text-gray-300 leading-relaxed">
+                <p><strong>1. Kindness & Respect:</strong> We maintain a cozy, welcoming environment. Treat all realm members with kindness.</p>
+                <p><strong>2. Safe & Inclusive:</strong> No hate speech, harassment, or unsafe content will be tolerated under any circumstances.</p>
+                <p><strong>3. Keep Channels Organized:</strong> Post content in their respective channels (e.g. introductions, cozy-builds, support).</p>
+                <p><strong>4. Staff Instructions:</strong> Follow guidance provided by Wickivy staff members.</p>
+            </div>
+            <div class="pt-2 text-right">
+                <button onclick="closeModal('rules-modal')" class="px-4 py-2 bg-wickivy-sage text-white text-xs font-semibold rounded-xl">Got It!</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: Mentor Contact Modal -->
+    <div id="mentor-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel bg-wickivy-cream dark:bg-wickivy-cream-dark max-w-md w-full rounded-3xl p-6 border border-wickivy-sage/40 space-y-4">
+            <div class="flex justify-between items-center border-b border-wickivy-sage/20 pb-3">
+                <h3 class="font-header font-bold text-lg text-wickivy-sage-dark dark:text-wickivy-blossom">💬 Message Angela Wick</h3>
+                <button onclick="closeModal('mentor-modal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="space-y-3">
+                <p class="text-xs text-gray-600 dark:text-gray-300">Send a quick message or question directly to Angela Wick (Owner):</p>
+                <textarea id="mentor-msg" rows="4" class="w-full p-3 text-xs rounded-xl border border-wickivy-sage/30 bg-white/70 dark:bg-wickivy-slate/70 focus:ring-2 focus:ring-wickivy-sage outline-none dark:text-white" placeholder="Hi Angela! I'm new to the realm and had a question about..."></textarea>
+            </div>
+            <div class="flex justify-end gap-2">
+                <button onclick="closeModal('mentor-modal')" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-xs font-semibold rounded-xl">Cancel</button>
+                <button onclick="sendMentorMessage()" class="px-4 py-2 bg-wickivy-sage text-white text-xs font-semibold rounded-xl">Send Message</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 3: Reassign Mentor Modal -->
+    <div id="reassign-modal" class="fixed inset-0 z-50 bg-black/50 backdrop-blur-sm hidden flex items-center justify-center p-4">
+        <div class="glass-panel bg-wickivy-cream dark:bg-wickivy-cream-dark max-w-md w-full rounded-3xl p-6 border border-wickivy-sage/40 space-y-4">
+            <div class="flex justify-between items-center border-b border-wickivy-sage/20 pb-3">
+                <h3 class="font-header font-bold text-lg text-wickivy-sage-dark dark:text-wickivy-blossom">🔄 Request Mentor Preference</h3>
+                <button onclick="closeModal('reassign-modal')" class="text-gray-400 hover:text-gray-600 dark:hover:text-white"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <p class="text-xs text-gray-600 dark:text-gray-300">Would you like a mentor in a specific time zone or with specific realm expertise?</p>
+            <select id="reassign-select" class="w-full p-3 text-xs rounded-xl border border-wickivy-sage/30 bg-white/70 dark:bg-wickivy-slate/70 dark:text-white">
+                <option>EU Timezones (UTC+0 to UTC+3)</option>
+                <option>NA Timezones (EST / CST / PST)</option>
+                <option>APAC Timezones</option>
+                <option>Focus: Roleplay & Lore</option>
+                <option>Focus: Building & Crafting</option>
+            </select>
+            <div class="flex justify-end gap-2 pt-2">
+                <button onclick="closeModal('reassign-modal')" class="px-4 py-2 bg-gray-200 dark:bg-gray-700 text-xs font-semibold rounded-xl">Cancel</button>
+                <button onclick="submitReassign()" class="px-4 py-2 bg-wickivy-sage text-white text-xs font-semibold rounded-xl">Request Match</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- App Logic Script -->
+    <script>
+        // Obfuscated webhook configuration
+        const _whParts = ["https://discord.com/api/webhooks/", "1566383487144169532/", "zWbefqNHSBjob82aXPhNULxh5GoFNhEz_gyq7nkm0m4QtsSp7LzZ4NfmJtlLohs34OpI"];
+        const getWebhookUrl = () => _whParts.join('');
+
+        // Helper function to send payload to Discord bot/webhook
+        function sendToDiscord(payloadData) {
+            fetch(getWebhookUrl(), {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(payloadData)
+            }).catch(err => console.error("Webhook notification error:", err));
+        }
+
+        // State Storage
+        const STORAGE_KEY = 'wickivy_onboarding_tasks';
+        const QUIZ_KEY = 'wickivy_quiz_result';
+        const TOTAL_TASKS = 7;
+        let quizAnswers = {};
+
+        window.onload = function() {
+            initTheme();
+            loadProgress();
+            loadQuizState();
+        };
+
+        function initTheme() {
+            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun text-lg';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('theme-icon').className = 'fa-solid fa-moon text-lg';
+            }
+        }
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+                document.getElementById('theme-icon').className = 'fa-solid fa-moon text-lg';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun text-lg';
+            }
+        }
+
+        function toggleTask(checkbox) {
+            saveProgress();
+            updateDashboard();
+
+            if (checkbox.checked) {
+                confetti({
+                    particleCount: 30,
+                    spread: 60,
+                    origin: { y: 0.8 },
+                    colors: ['#8AA891', '#E8A5B8', '#D4AF37']
+                });
+            }
+        }
+
+        function saveProgress() {
+            const checkboxes = document.querySelectorAll('.task-item input[type="checkbox"]');
+            const state = {};
+            checkboxes.forEach(cb => {
+                state[cb.dataset.id] = cb.checked;
+            });
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+        }
+
+        function loadProgress() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (saved) {
+                const state = JSON.parse(saved);
+                const checkboxes = document.querySelectorAll('.task-item input[type="checkbox"]');
+                checkboxes.forEach(cb => {
+                    if (state[cb.dataset.id] !== undefined) {
+                        cb.checked = state[cb.dataset.id];
+                    }
+                });
+            }
+            updateDashboard();
+        }
+
+        function resetProgress() {
+            if (confirm("Are you sure you want to reset your onboarding progress?")) {
+                localStorage.removeItem(STORAGE_KEY);
+                const checkboxes = document.querySelectorAll('.task-item input[type="checkbox"]');
+                checkboxes.forEach(cb => cb.checked = false);
+                updateDashboard();
+            }
+        }
+
+        // Track last notified milestones to prevent duplicate notifications
+        let lastNotifiedPercent = -1;
+
+        function updateDashboard() {
+            const checkboxes = document.querySelectorAll('.task-item input[type="checkbox"]');
+            let completedCount = 0;
+            checkboxes.forEach(cb => {
+                if (cb.checked) completedCount++;
+            });
+
+            const percent = Math.round((completedCount / TOTAL_TASKS) * 100);
+            
+            document.getElementById('progress-bar').style.width = percent + '%';
+            document.getElementById('progress-percent').innerText = percent + '%';
+            document.getElementById('tasks-status').innerText = `${completedCount} of ${TOTAL_TASKS} Quests Complete`;
+
+            let rank = "🌱 New Seedling";
+            if (percent >= 100) rank = "👑 Realm Champion";
+            else if (percent >= 70) rank = "🌿 Flourishing Sprout";
+            else if (percent >= 30) rank = "🌸 Wickivy Explorer";
+            document.getElementById('journey-rank').innerText = rank;
+
+            updateRewards(percent);
+
+            // Check milestone rewards notification
+            if (percent !== lastNotifiedPercent) {
+                if (percent === 25) {
+                    sendToDiscord({ content: `🌱 **Newbie Milestone Reached!** A member just hit **25% progress** and unlocked the **Seedling Role & Badge**!` });
+                    lastNotifiedPercent = 25;
+                } else if (percent === 50) {
+                    sendToDiscord({ content: `🎒 **Newbie Milestone Reached!** A member just hit **50% progress** and unlocked the **Starter Kit Pack**!` });
+                    lastNotifiedPercent = 50;
+                } else if (percent === 100) {
+                    sendToDiscord({ content: `👑 **Realm Champion!** A member just completed all onboarding quests (100%) and unlocked the **"Realm Bloom" Title**!` });
+                    lastNotifiedPercent = 100;
+                }
+            }
+        }
+
+        function updateRewards(percent) {
+            let unlocked = 0;
+            const r25 = document.getElementById('reward-25');
+            const r50 = document.getElementById('reward-50');
+            const r100 = document.getElementById('reward-100');
+
+            if (percent >= 25) {
+                unlockRewardCard(r25);
+                unlocked++;
+            } else lockRewardCard(r25);
+
+            if (percent >= 50) {
+                unlockRewardCard(r50);
+                unlocked++;
+            } else lockRewardCard(r50);
+
+            if (percent >= 100) {
+                unlockRewardCard(r100);
+                unlocked++;
+            } else lockRewardCard(r100);
+
+            document.getElementById('rewards-count').innerText = `${unlocked}/3 Unlocked`;
+        }
+
+        function unlockRewardCard(el) {
+            el.classList.remove('opacity-60');
+            el.classList.add('border-wickivy-sage', 'bg-wickivy-sage-light/40', 'dark:bg-wickivy-sage-dark/30');
+            const statusText = el.querySelector('.reward-status');
+            statusText.innerText = 'Unlocked ✨';
+            statusText.classList.remove('text-gray-400');
+            statusText.classList.add('text-wickivy-blossom');
+        }
+
+        function lockRewardCard(el) {
+            el.classList.add('opacity-60');
+            el.classList.remove('border-wickivy-sage', 'bg-wickivy-sage-light/40', 'dark:bg-wickivy-sage-dark/30');
+            const statusText = el.querySelector('.reward-status');
+            statusText.innerText = 'Locked';
+            statusText.classList.add('text-gray-400');
+            statusText.classList.remove('text-wickivy-blossom');
+        }
+
+        function selectAnswer(questionNum, type) {
+            quizAnswers['q' + questionNum] = type;
+            if (questionNum === 1) {
+                document.getElementById('quiz-q1').classList.add('hidden');
+                document.getElementById('quiz-q2').classList.remove('hidden');
+            } else if (questionNum === 2) {
+                document.getElementById('quiz-q2').classList.add('hidden');
+                document.getElementById('quiz-q3').classList.remove('hidden');
+            } else if (questionNum === 3) {
+                document.getElementById('quiz-q3').classList.add('hidden');
+                calculateQuizResult();
+            }
+        }
+
+        function calculateQuizResult() {
+            const counts = { flora: 0, scholar: 0, scout: 0 };
+            Object.values(quizAnswers).forEach(val => { if (counts[val] !== undefined) counts[val]++; });
+
+            let winner = 'flora';
+            if (counts.scholar > counts.flora && counts.scholar >= counts.scout) winner = 'scholar';
+            if (counts.scout > counts.flora && counts.scout > counts.scholar) winner = 'scout';
+
+            displayQuizResult(winner);
+            localStorage.setItem(QUIZ_KEY, winner);
+
+            sendToDiscord({ content: `🔮 **Archetype Quiz Completed!** A new member was sorted into: **${winner.toUpperCase()}**` });
+
+            const quizCb = document.querySelector('input[data-id="quiz"]');
+            if (quizCb && !quizCb.checked) {
+                quizCb.checked = true;
+                toggleTask(quizCb);
+            }
+        }
+
+        function displayQuizResult(archetype) {
+            const resultBox = document.getElementById('quiz-result');
+            const icon = document.getElementById('result-icon');
+            const title = document.getElementById('result-title');
+            const desc = document.getElementById('result-desc');
+
+            if (archetype === 'flora') {
+                icon.innerText = '🌸';
+                title.innerText = 'Flora Weaver';
+                desc.innerText = 'You thrive on creativity, harmony, and creating cozy spaces. You fit naturally with our Botanical & Aesthetic Guilds!';
+            } else if (archetype === 'scholar') {
+                icon.innerText = '📜';
+                title.innerText = 'Realm Scholar';
+                desc.innerText = 'You seek knowledge, love helping newcomers, and enjoy deep realm lore. The Chronicle Circle awaits you!';
+            } else {
+                icon.innerText = '⚔️';
+                title.innerText = 'Ivy Scout';
+                desc.innerText = 'You love adventure, realm quests, and discovering hidden secrets across the realm. Join the Realm Explorers!';
+            }
+
+            resultBox.classList.remove('hidden');
+        }
+
+        function loadQuizState() {
+            const savedResult = localStorage.getItem(QUIZ_KEY);
+            if (savedResult) {
+                document.getElementById('quiz-q1').classList.add('hidden');
+                document.getElementById('quiz-q2').classList.add('hidden');
+                document.getElementById('quiz-q3').classList.add('hidden');
+                displayQuizResult(savedResult);
+            }
+        }
+
+        function resetQuiz() {
+            quizAnswers = {};
+            localStorage.removeItem(QUIZ_KEY);
+            document.getElementById('quiz-result').classList.add('hidden');
+            document.getElementById('quiz-q1').classList.remove('hidden');
+        }
+
+        function openModal(id) {
+            document.getElementById(id).classList.remove('hidden');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('hidden');
+        }
+
+        function sendMentorMessage() {
+            const msg = document.getElementById('mentor-msg').value;
+            if (!msg.trim()) return;
+
+            // Send question/message to Angela Wick via webhook bot
+            sendToDiscord({
+                content: `💬 **New Message for Angela Wick (Owner):**\n> "${msg}"`
+            });
+
+            alert("✨ Message sent to Angela Wick! She will review it on Discord.");
+            document.getElementById('mentor-msg').value = '';
+            closeModal('mentor-modal');
+        }
+
+        function submitReassign() {
+            const preference = document.getElementById('reassign-select').value;
+            sendToDiscord({
+                content: `🔄 **Mentor Preference Request:** A member requested a mentor match with preference: *${preference}*`
+            });
+
+            alert("🌱 Your mentor request has been submitted to Angela Wick & the Wickivy Staff team!");
+            closeModal('reassign-modal');
+        }
+    </script>
+</body>
+</html>
